@@ -142,6 +142,7 @@ void nand_init(void)
 		nand_init_chip(i);
 #endif
 
+	gd->flash_size=total_nand_size;
 	printf("%lu MiB\n", total_nand_size / 1024);
 
 #ifdef CONFIG_SYS_NAND_SELECT_DEVICE

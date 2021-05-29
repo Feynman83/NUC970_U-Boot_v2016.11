@@ -50,11 +50,13 @@ void main_loop(void)
 #ifdef CONFIG_VERSION_VARIABLE
 	setenv("ver", version_string);  /* set version variable */
 #endif /* CONFIG_VERSION_VARIABLE */
-
+	
 	cli_init();
 
 	run_preboot_environment_command();
 
+	setenv_ulong("flash_size", ((ulong)(gd->flash_size))/1024);
+	setenv_ulong("ram_size", ((ulong)(gd->ram_size))/1024/1024);
 #if defined(CONFIG_UPDATE_TFTP)
 	update_tftp(0UL, NULL, NULL);
 #endif /* CONFIG_UPDATE_TFTP */
